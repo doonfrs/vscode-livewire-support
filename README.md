@@ -25,12 +25,23 @@ A Visual Studio Code extension to supercharge your Laravel Livewire development 
 
 ## Installation
 
+### Using VS Code CLI
+
+```bash
+code --install-extension doonfrs.livewire-support
+```
+
 ### From VS Code Marketplace UI
 
 1. Launch VS Code
 2. Go to Extensions (Ctrl+Shift+X)
 3. Search for "doonfrs.livewire-support"
 4. Click Install
+
+### From URL
+
+- Open [https://marketplace.visualstudio.com/items?itemName=doonfrs.livewire-support](https://marketplace.visualstudio.com/items?itemName=doonfrs.livewire-support)
+- Click Install
 
 ## Usage Examples
 
@@ -86,7 +97,15 @@ class ExampleComponent extends Component
 
 ## Contributing
 
-Pull requests are welcome! If you have ideas for new features or improvements, feel free to open an issue or PR.
+- **Star the Repository**: Show your support and help others discover the extension
+- **Report Issues**: Found a bug? Let us know on the GitHub issues page
+- **Suggest Features**: Have ideas for improvements? We'd love to hear them
+- **Submit Pull Requests**: Code contributions are always welcome
+- **Share with Friends**: Help spread the word about Project Finder
+
+## Github project
+
+[https://github.com/doonfrs/vscode-livewire-support](https://github.com/doonfrs/vscode-livewire-support)
 
 ### Code Structure
 
