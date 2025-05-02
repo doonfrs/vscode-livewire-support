@@ -41,4 +41,54 @@ export class LivewireHelper {
     }
     return properties;
   }
+  
+  static toKebabCase(str: string): string {
+    return str
+      .replace(/([a-z0-9])([A-Z])/g, '$1-$2')
+      .replace(/_/g, '-')
+      .toLowerCase();
+  }
+  
+  static componentNameToClassName(componentName: string): { className: string, folders: string[] } {
+    const parts = componentName.split('.');
+    const classKebab = parts.pop() || '';
+    const className = classKebab.split('-').map(
+      part => part.charAt(0).toUpperCase() + part.slice(1)
+    ).join('');
+    const folders = parts.map(
+      folder => folder.split('-').map(
+        part => part.charAt(0).toUpperCase() + part.slice(1)
+      ).join('')
+    );
+    
+    return { className, folders };
+  }
+  
+  static resolveLivewireComponentPhpPath(componentName: string, currentDir: string): string | null {
+    const appLivewireDir = this.findAppLivewireDir(currentDir);
+    if (!appLivewireDir) return null;
+
+    const { className, folders } = this.componentNameToClassName(componentName);
+    const relativePath = folders.length > 0
+      ? path.join(...folders, `${className}.php`)
+      : `${className}.php`;
+    
+    const phpFilePath = path.join(appLivewireDir, relativePath);
+    return fs.existsSync(phpFilePath) ? phpFilePath : null;
+  }
+  
+  static isInAttributePosition(document: any, position: any): boolean {
+    const line = document.lineAt(position.line).text;
+    const textBeforeCursor = line.substring(0, position.character);
+    
+    // Check if we're inside an HTML attribute name (not in a value)
+    const lastEquals = textBeforeCursor.lastIndexOf('=');
+    const lastSpace = textBeforeCursor.lastIndexOf(' ');
+    const lastQuote = Math.max(
+      textBeforeCursor.lastIndexOf('"'), 
+      textBeforeCursor.lastIndexOf("'")
+    );
+    
+    return lastSpace > lastEquals && lastSpace > lastQuote;
+  }
 } 

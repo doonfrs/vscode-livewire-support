@@ -18,6 +18,12 @@ A Visual Studio Code extension to supercharge your Laravel Livewire development 
   - Get attribute suggestions for Livewire components in Blade files:
     - Inside `<livewire:component-name ...>` tags, auto-complete all public properties of the component (in kebab-case and with `:` prefix for binding).
     - Inside the array of `@livewire('component-name', [ ... ])`, auto-complete all public properties as array keys (in kebab-case, only in key position).
+- **Nested Component Support**
+  - Components using dot notation (e.g., `shop.item-filters`) are properly resolved to folder structures (`Shop/ItemFilters.php`).
+- **Multi-line Tag Support**
+  - Completions work correctly for Livewire tags and directives that span multiple lines.
+- **Context-Aware Completions**
+  - Attribute suggestions only appear in appropriate positions (not inside attribute values).
 - **Supports Nested Projects**
   - Works even if your Laravel project is in a subfolder of your workspace.
 - **Zero Configuration**
@@ -66,7 +72,11 @@ class ExampleComponent extends Component
 ### Example Blade Usage
 
 ```blade
-<livewire:example-component name="John Doe" age="25" show-address="true" address="123 Main St, Anytown, USA" />
+<livewire:example-component 
+    name="John Doe" 
+    :age="25" 
+    :show-address="true" 
+    address="123 Main St, Anytown, USA" />
 
 {{-- Or using the directive --}}
 @livewire('example-component', [
@@ -75,6 +85,9 @@ class ExampleComponent extends Component
     'show-address' => true,
     'address' => '456 Elm St, Othertown, USA'
 ])
+
+{{-- Nested components are also supported --}}
+<livewire:shop.item-filters :category="$category" />
 ```
 
 - **Ctrl+Click** or **F12** on the component name to jump to the PHP class.

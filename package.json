@@ -2,7 +2,7 @@
     "name": "livewire-support",
     "displayName": "Livewire Support",
     "description": "VS Code extension for Laravel Livewire development support.",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "publisher": "doonfrs",
     "engines": {
         "vscode": ">=1.70.0"

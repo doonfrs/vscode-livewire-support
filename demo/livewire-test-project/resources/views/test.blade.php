@@ -18,11 +18,20 @@
     <div>
         <h1>Hello World</h1>
     </div>
-    <livewire:example-component :address="'my address'" :show-address="false" address="my address" />
+    <livewire:example-component
+        :address="'my address'"
+        :show-address="false"
+        address="my address" />
 
     {{-- Alternative Livewire usage --}}
-    @livewire('example-component',['address'=>'my address','show-address'=>false]
+    @livewire('example-component',
+    [
+    'address'=>'my address',
+    'show-address'=>false,
+    "address"=>"my address",
+    
     ]
+    );
 </body>
 
 </html>
